@@ -8,6 +8,8 @@ var clayConfig = require('./config');
 var clay = new Clay(clayConfig, null, {autoHandleEvents: false});
 
 Pebble.addEventListener('showConfiguration', function(e) {
+  settings = JSON.parse(localStorage.getItem('clay-settings')) || {};
+  console.log('CURRENT SETTINGS: ' + JSON.stringify(settings));
   Pebble.openURL(clay.generateUrl());
 });
 
@@ -16,59 +18,78 @@ Pebble.addEventListener('webviewclosed', function(e) {
     return;
   }
   var dict = clay.getSettings(e.response);
-  
-  // Save the Clay settings to the Settings module. 
+  settings = JSON.parse(localStorage.getItem('clay-settings')) || {};
+  console.log('NEW SETTINGS: ' + JSON.stringify(settings));
   Settings.option(dict);
 });
 
-var claytest = Settings.option('test1');
+// Returns undefined. Only for testing.
+//var claytest = Settings.option('test1');
 
-// when system is ready, do this stuff
+
+
+// Initialization Code
 Pebble.addEventListener("ready",
   function(e) {
-	// get clay settings and store it to our global settings variable so we can access it later
-	// TODO: better logging for this
-	// create a new ui card
-	// maybe if we get this inside of the event listener then itll work?
-    var card = new UI.Card({
-	    title: 'Services',
-	    body: 'Loading...',
-	    scrollable: true
-      });
-	console.log('Loading Screen sent')
-    // show the card
-    card.show();
-	console.log('Loading Screen shown - start rendering homepage!')
+	// Credit goes to swansswansswansswanssosoft for this line
+	settings = JSON.parse(localStorage.getItem('clay-settings')) || {};
+	// App started, log to console
+	console.log('Services v0.1')
+    
+	// Create our main UI card
+	var mainUI = new UI.Card({
+		title: 'Services',
+		body: 'Developer Menu: UP for config vars DOWN for JSON',
+		scrollable: false
+	  });
+	// Show Main UI card
+	mainUI.show();
+
+    // If someone clicks 'up', show our menu with (currently) just our config vars
+	mainUI.on('click', 'up', function(e) {
+		var menu = new UI.Menu({
+		  sections: [{
+			items: [{
+				// App Token 
+			  title: 'AppToken',
+			  subtitle: `${settings.appToken}`,
+			}, {
+				// User ID
+			  title: 'UserID',
+			  subtitle: `${settings.userId}`,
+			}, {
+				// App ID - these are all done via clay, see config.json and package.json for messageKeys
+			  title: 'AppID',
+			  subtitle: `${settings.appId}`,
+			}]
+		  }]
+		});
+		// If someone clicks select, send a message to console. This is just for testing, hence why it's commented out. Uncomment if you're unsure if the app is responding.
+		//menu.on('select', function(e) {
+		  //console.log('Selected item #' + e.itemIndex + ' of section #' + e.sectionIndex);
+		  //console.log('The item is titled "' + e.item.title + '"');
+		//});
+		menu.show();
+	  });
+	  // If someone clicks select, it'll show this - this will be deleted soon in favor of services
+	  mainUI.on('click', 'select', function(e) {
+		  var testConfig = new UI.Card({
+			  title: 'Config Data',
+			  body: `${settings}`,
+			  scrollable: true
+		  });
+		  // show the card
+		  testConfig.show();
+		});
+		// Whitespace for future use
+
+
+
+
+
+
+
 	  }
 	
 );
-
-var mainUI = new UI.Card({
-	title: 'Services',
-	body: 'Developer Menu: UP for config vars DOWN for TestMenu Select for AJAX test',
-	scrollable: true
-  });
-// show the card
-mainUI.show();
-
-mainUI.on('click', 'up', function(e) {
-	var menu = new UI.Menu({
-	  sections: [{
-		items: [{
-		  title: 'UserToken',
-		  subtitle: `${Settings.option('userToken')}`,
-		}, {
-		  title: 'UserID',
-		  subtitle: `${Settings.option('userID')}`,
-		}, {
-		  title: 'AppID',
-		  subtitle: `${Settings.option('appID')}`,
-		}]
-	  }]
-	});
-	menu.on('select', function(e) {
-	  console.log('Selected item #' + e.itemIndex + ' of section #' + e.sectionIndex);
-	  console.log('The item is titled "' + e.item.title + '"');
-	});
-	menu.show();
-  });
+// End of ready - post-initalization code, for other code to run it'll be down here
