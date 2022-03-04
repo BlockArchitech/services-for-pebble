@@ -11,7 +11,7 @@
 		"pebblejs": "^1.0.0"
 	},
 	"pebble": {
-		"displayName": "pbltest",
+		"displayName": "Services",
 		"uuid": "9f511c2b-a61c-4568-a6ea-53db50b338d9",
 		"sdkVersion": "3",
 		"enableMultiJS": true,
