@@ -48,7 +48,12 @@
 		  },
 		  { 
 			"type": "text", 
-			"defaultValue": "To get a User ID, please go to https://api.planningcenteronline.com/explorer/services/v2/teams and your user ID will be under the 'Teams' dropdown and your id will be the only item in the list. It'll say 'ID (123456)' and you can copy the number 123456 (without () or ID) and paste it here."
+			"defaultValue": "To get a User ID, please go to https://api.planningcenteronline.com/explorer/services/v2/teams and your user ID will be under the 'Teams' dropdown and your id will be the only item in the list."
+
+		  },
+		  {
+			  "type": "text",
+			  "defaultValue": "It'll say 'ID (123456)' and you can copy the number 123456 (without () or ID) and paste it here. If it's not you, you'll have to click on the people tab and use the offset box to find your name."
 		  }
 		]
 	  },
