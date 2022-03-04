@@ -19,10 +19,6 @@ Pebble.addEventListener('webviewclosed', function(e) {
   
   // Save the Clay settings to the Settings module. 
   Settings.option(dict);
-  // Send app message with settings to the watch
-  Pebble.sendAppMessage(dict);
-  // just for testing: send value of test1 setting as appmessage to watch
-  console.log(Settings.option('test1'));
 });
 
 var claytest = Settings.option('test1');
