@@ -1,0 +1,27 @@
+{
+	"type": "select",
+	"appKey": "test1",
+	"defaultValue": "grape",
+	"label": "Favorite Flavor",
+	"options": [
+	  { 
+		"label": "", 
+		"value": "" 
+	  },
+	  { 
+		"label": "Berry",
+		"value": "berry" 
+	  },
+	  { 
+		"label": "Grape",
+		"value": "grape" 
+	  },
+	  { 
+		"label": "Banana",
+		"value": "banana" 
+	  }
+	],
+	"attributes": {
+	  "required": "required"
+	}
+  }

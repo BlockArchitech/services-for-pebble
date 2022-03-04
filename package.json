@@ -1,0 +1,38 @@
+{
+	"name": "pebbletest",
+	"author": "MakeAwesomeHappen",
+	"version": "1.0.0",
+	"keywords": [
+		"pebble-app"
+	],
+	"private": true,
+	"dependencies": {
+		"pebble-clay": "^1.0.4",
+		"pebblejs": "^1.0.0"
+	},
+	"pebble": {
+		"displayName": "pbltest",
+		"uuid": "9f511c2b-a61c-4568-a6ea-53db50b338d9",
+		"sdkVersion": "3",
+		"enableMultiJS": true,
+		"targetPlatforms": [
+			"aplite",
+			"basalt",
+			"chalk",
+			"diorite"
+		],
+		"watchapp": {
+			"watchface": false
+		},
+		"resources": {
+			"media": []
+		},
+		"capabilities": [
+			"configurable"
+		],
+		"messageKeys": [
+			"test1",
+			"test2"
+		]
+	}
+}
