@@ -1,6 +1,6 @@
 require('pebblejs');
 var UI = require('pebblejs/ui');
-
+var ajax = require('ajax')
 //clay
 var Settings = require('pebblejs/settings');
 var Clay = require('pebble-clay');
@@ -27,6 +27,16 @@ Pebble.addEventListener('webviewclosed', function(e) {
 //var claytest = Settings.option('test1');
 
 
+// Get list of services you are in via planning center services API
+// https://api.planningcenteronline.com/services/v2/people/(User ID) URL for this, so we'd replace user ID with our own (e.g. 123456)
+// https://api.planningcenteronline.com/services/v2/people/(userID)/schedules is whr
+
+
+
+
+
+
+
 
 // Initialization Code
 Pebble.addEventListener("ready",
@@ -44,7 +54,11 @@ Pebble.addEventListener("ready",
 	  });
 	// Show Main UI card
 	mainUI.show();
-
+	$.ajax({ url: `https://api.planningcenteronline.com/services/v2/people/${settings.userId}/schedules`, type: 'json' , headers: { 'Authorization': `Basic ${settings.appId}:${settings.accessToken}` }},
+	function(data) {
+	  console.log('Quote of the day is: ' + data.contents.data[0].attributes.dates);
+	}
+  );
     // If someone clicks 'up', show our menu with (currently) just our config vars
 	mainUI.on('click', 'up', function(e) {
 		var menu = new UI.Menu({
@@ -82,12 +96,6 @@ Pebble.addEventListener("ready",
 		  testConfig.show();
 		});
 		// Whitespace for future use
-
-
-
-
-
-
 
 	  }
 	
