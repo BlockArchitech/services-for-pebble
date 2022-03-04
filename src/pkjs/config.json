@@ -1,27 +1,59 @@
-{
-	"type": "select",
-	"appKey": "test1",
-	"defaultValue": "grape",
-	"label": "Favorite Flavor",
-	"options": [
-	  { 
-		"label": "", 
-		"value": "" 
+[
+	{
+	  "type": "heading",
+	  "defaultValue": "Services for Pebble"
+	},
+	{
+	  "type": "text",
+	  "defaultValue": "Configuration page"
+	},
+	{
+	  "type": "section",
+	  "items": [
+		{
+		  "type": "heading",
+		  "defaultValue": "PCO Configuration"
+		},
+		{
+		  "type": "input",
+		  "messageKey": "appId",
+		  "label": "Planning Center PAT ID"
+		},
+		{
+		  "type": "input",
+		  "messageKey": "appToken",
+		  "label": "Planning Center PAT Secret"
+		},
+		{
+			"type": "input",
+			"messageKey": "userId",
+			"label": "User ID number for PCO API"
+		  }
+	  ]
+	},
+	{
+		"type": "section",
+		"items": [
+		  {
+			"type": "heading",
+			"defaultValue": "Information"
+		  },
+		  {
+			"type": "heading",
+			"defaultValue": "PAT ID's and Secrets"
+		  },
+		  { 
+			"type": "text", 
+			"defaultValue": "To get a PAT ID and secret, go to https://api.planningcenteronline.com/oauth/applications and create a new Personal Access Token. Do not share this information, as it does grant access to your planning center account."
+		  },
+		  { 
+			"type": "text", 
+			"defaultValue": "To get a User ID, please go to https://api.planningcenteronline.com/explorer/services/v2/teams and your user ID will be under the 'Teams' dropdown and your id will be the only item in the list. It'll say 'ID (123456)' and you can copy the number 123456 (without () or ID) and paste it here."
+		  }
+		]
 	  },
-	  { 
-		"label": "Berry",
-		"value": "berry" 
-	  },
-	  { 
-		"label": "Grape",
-		"value": "grape" 
-	  },
-	  { 
-		"label": "Banana",
-		"value": "banana" 
-	  }
-	],
-	"attributes": {
-	  "required": "required"
+	{
+	  "type": "submit",
+	  "defaultValue": "Save Settings"
 	}
-  }
+]

@@ -1,5 +1,5 @@
 {
-	"name": "pebbletest",
+	"name": "Services for Pebble",
 	"author": "MakeAwesomeHappen",
 	"version": "1.0.0",
 	"keywords": [
@@ -31,8 +31,9 @@
 			"configurable"
 		],
 		"messageKeys": [
-			"test1",
-			"test2"
+			"appId",
+			"appToken",
+			"userId"
 		]
 	}
 }
